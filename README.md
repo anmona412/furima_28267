@@ -1,25 +1,28 @@
 # テーブル設計
 
 ## users テーブル
-|Column   |Type    |Options     |
-|---------|--------|------------|
-|nickname |string  |null: false |
-|email    |string  |null: false |
-|password |string  |null: false |
-|name     |string  |null: false |
-|birthday |date    |null: false |
+|Column           |Type    |Options     |
+|-----------------|--------|------------|
+|nickname         |string  |null: false |
+|email            |string  |null: false |
+|password         |string  |null: false |
+|family_name_zen  |string  |null: false |
+|given_name_zen   |string  |null: false |
+|family_name_kana |string  |null: false |
+|given_name_kana  |string  |null: false |
+|birthday         |date    |null: false |
 
 ### Association
-- has_many :goods
+- has_many :items
 - has_many :bought_by
 - has_many :comments
 --------------------------------------------------
 
-## goods テーブル
+## items テーブル
 |Column       |Type    |Options      |
 |---------    |--------|------------ |
 |user_id      |integer |null: false  |
-|goods_name   |string  |null: false  |
+|name         |string  |null: false  |
 |comment      |text    |null: false  |
 |category_id  |integer |null: false  |
 |price        |integer |null: false  |
@@ -31,7 +34,8 @@
 ### Association
 - belongs_to :users
 - has_many   :comments, dependent: :destroy
-- has_one :bought_by
+- has_many   :send_to
+- has_one    :bought_by
 - belongs_to_active_hash :category
 - belongs_to_active_hash :status
 - belongs_to_active_hash :burden
@@ -44,29 +48,29 @@
 |Column  |Type    |Options     |
 |--------|-----   |------------|
 |user_id |integer |null: false |
-|goods_id|integer |null: false |
+|item_id |integer |null: false |
 
 
 ### Association
 - belongs_to :users
-- belongs_to :goods
+- belongs_to :items
 - has_one :send_to
 --------------------------------------------------
 
 ## send_to テーブル
 |Column         |Type    |Options     |
 |--------       |-----   |------------|
-|bought_by_id   |integer |null: false |
-|postal_code    |integer |null: false |
+|items_id       |integer |null: false |
+|postal_code    |string  |null: false |
 |prefectures_id |integer |null: false |
 |city           |string  |null: false |
 |address        |string  |null: false |
 |building       |string  |null: false |
-|phone_number   |integer |null: false |
+|phone_number   |string  |null: false |
 
 
 ### Association
-- belongs_to :bought_by
+- belongs_to :items
 - belongs_to_active_hash :prefectures
 --------------------------------------------------
 
@@ -74,12 +78,12 @@
 |Column  |Type    |Options     |
 |--------|-----   |------------|
 |user_id |integer |null: false |
-|goods_id|integer |null: false |
+|items_id|integer |null: false |
 |comment |text    |null: false |
 
 ### Association
 - belongs_to :users
-- belongs_to :goods
+- belongs_to :items
 --------------------------------------------------
 
 ### ActiveHash使用
