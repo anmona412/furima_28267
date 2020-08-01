@@ -17,6 +17,8 @@ class User < ApplicationRecord
       validates :given_name_kana
     end
     
+    validates :password, format: {with: /\A(?=.*?[a-z])(?=.*?[\d])[a-z\d]+\z/i, message: "英数半角混合で設定してください"}
+
     validates :birthday
   end
 end
