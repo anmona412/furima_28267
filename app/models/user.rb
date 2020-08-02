@@ -9,7 +9,7 @@ class User < ApplicationRecord
     kana_only = /\A[ァ-ヶー－]+\z/.freeze
     num_and_char = /\A(?=.*?[a-z])(?=.*?[\d])[a-z\d]+\z/i.freeze
 
-    validates :nickname
+    validates :nickname, uniqueness: { case_sensitive: true }
 
     with_options format: { with: zen_only, message: '全角文字で入力してください' } do
       validates :family_name_zen
