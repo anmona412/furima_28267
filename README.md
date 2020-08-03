@@ -28,7 +28,7 @@
 |price        |integer |null: false  |
 |status_id    |integer |null: false  |
 |burden_id    |integer |null: false  |
-|send_from_id |integer |null: false  |
+|prefectures_id |integer |null: false  |
 |send_at_id   |integer |null: false  |
 
 ### Association
@@ -39,7 +39,7 @@
 - belongs_to_active_hash :category
 - belongs_to_active_hash :status
 - belongs_to_active_hash :burden
-- belongs_to_active_hash :send_from
+- belongs_to_active_hash :prefectures
 - belongs_to_active_hash :send_at
 - has_one_attached :image
 --------------------------------------------------
