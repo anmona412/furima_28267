@@ -1,7 +1,7 @@
 class Item < ApplicationRecord
   extend ActiveHash::Associations::ActiveRecordExtensions
   # アソシエーション
-belongs_to :users
+belongs_to :user
 # has_many               :comments, dependent: :destroy
 # has_many               :send_to
 # has_one                :bought_by
@@ -14,14 +14,7 @@ has_one_attached :image
 
   # バリデーション
   with_options presence: true do
-    validates :user_id
-    validates :name
-    validates :comment
-    validates :category_id
-    validates :price
-    validates :status_id
-    validates :burden_id
-    validates :prefecture_id
-    validates :send_at_id
+    validates :user_id, :name, :comment, :category_id, :status_id, :burden_id,:prefecture_id,:send_at_id
+    validates :price, :numericality => { :greater_than_or_equal_to => 333, :less_than_or_equal_to => 9999999 }
   end
 end
