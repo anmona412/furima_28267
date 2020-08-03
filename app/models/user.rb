@@ -4,6 +4,12 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
 
+# アソシエーション
+has_many :items
+# has_many :bought_by
+# has_many :comments
+
+# バリデーション
   with_options presence: true do
     zen_only = /\A[ぁ-んァ-ン一-龥]/.freeze
     kana_only = /\A[ァ-ヶー－]+\z/.freeze
