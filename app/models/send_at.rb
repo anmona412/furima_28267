@@ -1,0 +1,2 @@
+class SendAt < ApplicationRecord
+end
