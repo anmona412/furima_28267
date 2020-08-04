@@ -5,7 +5,7 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :validatable
 
 # アソシエーション
-has_many :item
+has_many :items
 # has_many :bought_by
 # has_many :comments
 

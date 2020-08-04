@@ -9,5 +9,6 @@ FactoryBot.define do
     family_name_kana        { Gimei.last.katakana }
     given_name_kana         { Gimei.first.katakana }
     birthday                { Faker::Date.between(from: '1930-01-01', to: Date.today) }
+    
   end
 end
