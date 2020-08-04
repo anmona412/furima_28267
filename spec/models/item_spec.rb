@@ -9,7 +9,6 @@ RSpec.describe Item, type: :model do
     
     context '商品出品がうまく行く時' do
       it '全てのカラムが正しく埋まっている時登録できる' do
-        # binding.pry
         expect(@item).to be_valid
       end
     end
@@ -97,6 +96,18 @@ RSpec.describe Item, type: :model do
         @item.price = nil
         @item.valid?
         expect(@item.errors.full_messages).to include("Price can't be blank")
+      end
+
+      it '価格は300円より低い金額では登録できない' do
+        @item.price = 299
+        @item.valid?
+        expect(@item.errors.full_messages).to include("Price must be greater than or equal to 300")
+      end
+
+      it '価格は9999999円より高い金額では登録できない' do
+        @item.price = 10000000
+        @item.valid?
+        expect(@item.errors.full_messages).to include("Price must be less than or equal to 9999999")
       end
     end
   end
