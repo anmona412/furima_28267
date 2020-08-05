@@ -2,6 +2,8 @@ class ItemsController < ApplicationController
   before_action :check_user, only: [:new, :create]
 
   def index
+    @items = Item.all
+    @record = Item.count
   end
 
   def new
