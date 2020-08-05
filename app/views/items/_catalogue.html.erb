@@ -5,9 +5,11 @@
           <%= image_tag item.image, class: "item-img" %>
 
           <%# 商品が売れていればsold outの表示 %>
+          <%if  BoughtBy.where(item_id: item.id).exists? == true %>
           <div class='sold-out'>
             <span>Sold Out!!</span>
           </div>
+          <%end%>
           <%# //商品が売れていればsold outの表示 %>
 
         </div>
