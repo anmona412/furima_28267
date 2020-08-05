@@ -8,6 +8,7 @@ belongs_to_active_hash :burden
 belongs_to_active_hash :prefecture
 belongs_to_active_hash :send_at
 has_one_attached :image
+has_one :bought_by
 
   # バリデーション
   with_options presence: true do
