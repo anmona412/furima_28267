@@ -47,8 +47,8 @@
 ## bought_by テーブル
 |Column  |Type    |Options     |
 |--------|-----   |------------|
-|user_id |integer |null: false |
-|item_id |integer |null: false |
+|user_id |integer |foreign_key: true |
+|item_id |integer |foreign_key: true |
 
 
 ### Association
@@ -60,7 +60,7 @@
 ## send_to テーブル
 |Column         |Type    |Options     |
 |--------       |-----   |------------|
-|items_id       |integer |null: false |
+|items_id       |integer |foreign_key: true|
 |postal_code    |string  |null: false |
 |prefecture_id |integer |null: false |
 |city           |string  |null: false |
