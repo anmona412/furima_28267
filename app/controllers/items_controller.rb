@@ -1,5 +1,6 @@
 class ItemsController < ApplicationController
   before_action :check_user, only: [:new, :create]
+  before_action :check_item, only: [:show, :edit, :update]
 
   def index
     @items = Item.all
@@ -11,7 +12,6 @@ class ItemsController < ApplicationController
   end
 
   def show
-    @item = Item.find(params[:id])
     @sold = BoughtBy.where(item_id: @item.id).exists?
   end
 
@@ -21,6 +21,18 @@ class ItemsController < ApplicationController
       redirect_to root_path
     else
       render :new
+    end
+  end
+
+  def edit
+    redirect_to root_path unless user_signed_in?  && current_user.id == @item.user_id 
+  end
+
+  def update
+    if @item.update(item_params)
+      redirect_to item_path
+    else
+      render :edit
     end
   end
 
@@ -37,5 +49,9 @@ class ItemsController < ApplicationController
 
   def check_user
     redirect_to user_session_path unless user_signed_in?
+  end
+
+  def check_item
+    @item = Item.find(params[:id])
   end
 end
