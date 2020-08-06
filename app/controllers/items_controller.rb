@@ -1,7 +1,7 @@
 class ItemsController < ApplicationController
   before_action :check_user, only: [:new, :create]
   before_action :check_item, only: [:show, :edit, :update, :destroy]
-  before_action :user_auth, only:[:show, :edit, :destroy]
+  before_action :user_auth, only: [:show, :edit, :destroy]
   def index
     @items = Item.all
     @record = Item.count
@@ -25,7 +25,7 @@ class ItemsController < ApplicationController
   end
 
   def edit
-    redirect_to root_path unless @user_auth 
+    redirect_to root_path unless @user_auth
   end
 
   def update
