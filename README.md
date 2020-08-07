@@ -21,7 +21,7 @@
 ## items テーブル
 |Column       |Type    |Options            |
 |---------    |--------|------------       |
-|user_id      |integer |foreign_key: true  |
+|user      |references |null: false,foreign_key: true  |
 |name         |string  |null: false        |
 |comment      |text    |null: false        |
 |category_id  |integer |null: false        |
@@ -47,8 +47,8 @@
 ## bought_by テーブル
 |Column  |Type    |Options     |
 |--------|-----   |------------|
-|user_id |integer |foreign_key: true |
-|item_id |integer |foreign_key: true |
+|user |references|null: false,foreign_key: true |
+|item |references |null: false,foreign_key: true |
 
 
 ### Association
@@ -60,7 +60,7 @@
 ## transaction テーブル
 |Column         |Type    |Options     |
 |--------       |-----   |------------|
-|items_id       |integer |foreign_key: true|
+|item       |references|null: false,foreign_key: true|
 |postal_code    |string  |null: false |
 |prefecture_id |integer |null: false |
 |city           |string  |null: false |
