@@ -34,7 +34,7 @@
 ### Association
 - belongs_to :users
 - has_many   :comments, dependent: :destroy
-- has_many   :send_to
+- has_many   :transactions
 - has_one    :bought_by
 - belongs_to_active_hash :category
 - belongs_to_active_hash :status
@@ -54,10 +54,10 @@
 ### Association
 - belongs_to :users
 - belongs_to :items
-- has_one :send_to
+- has_one :transaction
 --------------------------------------------------
 
-## send_to テーブル
+## transaction テーブル
 |Column         |Type    |Options     |
 |--------       |-----   |------------|
 |items_id       |integer |foreign_key: true|
