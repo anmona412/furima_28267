@@ -1,11 +1,9 @@
 class TransactionsController < ApplicationController
-before_action :item, only:[:index, :create]
+  before_action :item, only: [:index, :create]
 
   def index
     redirect_to user_session_path unless user_signed_in?
-    if current_user.id == @item.user_id || BoughtBy.where(item_id: @item.id).exists?
-      redirect_to root_path
-    end
+    redirect_to root_path if current_user.id == @item.user_id || BoughtBy.where(item_id: @item.id).exists?
   end
 
   def new
@@ -17,7 +15,7 @@ before_action :item, only:[:index, :create]
     if @street.valid?
       pay_item
       @street.save
-      return redirect_to item_path(params[:item_id])
+      redirect_to item_path(params[:item_id])
     else
       redirect_to item_transactions_path(params[:item_id])
     end
@@ -30,7 +28,7 @@ before_action :item, only:[:index, :create]
   end
 
   def pay_item
-    Payjp.api_key = ENV["PAYJP_SECRET_KEY"]
+    Payjp.api_key = ENV['PAYJP_SECRET_KEY']
     Payjp::Charge.create(
       amount: @item.price,
       card: street_params[:token],
