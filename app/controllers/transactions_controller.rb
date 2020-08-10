@@ -20,7 +20,7 @@ class TransactionsController < ApplicationController
       @street.save
       redirect_to item_path(params[:item_id])
     else
-      redirect_to item_transactions_path(params[:item_id])
+      render :index
     end
   end
 
