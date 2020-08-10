@@ -1,10 +1,9 @@
 class TransactionsController < ApplicationController
+  before_action :authenticate_user!
   before_action :item, only: [:index, :create]
 
   def index
-    if user_signed_in? == false
-      redirect_to user_session_path
-    elsif current_user.id == @item.user_id || BoughtBy.where(item_id: @item.id).exists?
+    if current_user.id == @item.user_id || BoughtBy.where(item_id: @item.id).exists?
       redirect_to root_path
     end
   end
