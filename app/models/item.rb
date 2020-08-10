@@ -9,7 +9,6 @@ class Item < ApplicationRecord
   belongs_to_active_hash :send_at
   has_one_attached :image
   has_one :bought_by
-  has_one :street, class_name:"Transaction"
 
   # バリデーション
   with_options presence: true do

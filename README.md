@@ -34,7 +34,6 @@
 ### Association
 - belongs_to :users
 - has_many   :comments, dependent: :destroy
-- has_many   :transactions
 - has_one    :bought_by
 - belongs_to_active_hash :category
 - belongs_to_active_hash :status
