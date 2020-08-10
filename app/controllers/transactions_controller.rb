@@ -9,7 +9,7 @@ before_action :item, only:[:index, :create]
   end
 
   def new
-    
+    @street = ItemBought.new
   end
 
   def create
