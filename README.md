@@ -21,7 +21,7 @@
 ## items テーブル
 |Column       |Type    |Options            |
 |---------    |--------|------------       |
-|user_id      |integer |foreign_key: true  |
+|user      |references |null: false,foreign_key: true  |
 |name         |string  |null: false        |
 |comment      |text    |null: false        |
 |category_id  |integer |null: false        |
@@ -34,7 +34,6 @@
 ### Association
 - belongs_to :users
 - has_many   :comments, dependent: :destroy
-- has_many   :send_to
 - has_one    :bought_by
 - belongs_to_active_hash :category
 - belongs_to_active_hash :status
@@ -47,20 +46,20 @@
 ## bought_by テーブル
 |Column  |Type    |Options     |
 |--------|-----   |------------|
-|user_id |integer |foreign_key: true |
-|item_id |integer |foreign_key: true |
+|user |references|null: false,foreign_key: true |
+|item |references |null: false,foreign_key: true |
 
 
 ### Association
 - belongs_to :users
 - belongs_to :items
-- has_one :send_to
+- has_one :transaction
 --------------------------------------------------
 
-## send_to テーブル
+## transaction テーブル
 |Column         |Type    |Options     |
 |--------       |-----   |------------|
-|items_id       |integer |foreign_key: true|
+|item       |references|null: false,foreign_key: true|
 |postal_code    |string  |null: false |
 |prefecture_id |integer |null: false |
 |city           |string  |null: false |
