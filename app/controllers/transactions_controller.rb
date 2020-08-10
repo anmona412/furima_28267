@@ -2,6 +2,10 @@ class TransactionsController < ApplicationController
 before_action :item, only:[:index, :create]
 
   def index
+    redirect_to user_session_path unless user_signed_in?
+    if current_user.id == @item.user_id || BoughtBy.where(item_id: @item.id).exists?
+      redirect_to root_path
+    end
   end
 
   def new
